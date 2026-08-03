@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arda Ergün</title>
+<meta name="description" content="Mathematics researcher working in combinatorics and number theory.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Spectral:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --paper: #F3F5F0;
+    --paper-line: #DCE3D8;
+    --ink: #1E2B27;
+    --ink-soft: #55655F;
+    --ink-faint: #8B9A93;
+    --accent: #8C3B2E;
+    --accent-gold: #B98A2E;
+    --font-display: 'Fraunces', serif;
+    --font-body: 'Spectral', serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+    --max: 720px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { animation: none !important; transition: none !important; }
+  }
+
+  body {
+    margin: 0;
+    background:
+      repeating-linear-gradient(0deg, var(--paper-line) 0px, var(--paper-line) 1px, transparent 1px, transparent 32px),
+      repeating-linear-gradient(90deg, var(--paper-line) 0px, var(--paper-line) 1px, transparent 1px, transparent 32px),
+      var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 18px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  a:hover { color: var(--ink); }
+  a:focus-visible, button:focus-visible, summary:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 28px; }
+
+  /* ---------- header ---------- */
+  header.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(243, 245, 240, 0.88);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--paper-line);
+  }
+  .site-header .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 14px;
+    padding-bottom: 14px;
+  }
+  .site-header .mark {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 0.03em;
+    color: var(--ink-soft);
+    text-decoration: none;
+  }
+  .site-header nav a {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 0.03em;
+    color: var(--ink);
+    text-decoration: none;
+    margin-left: 22px;
+  }
+  .site-header nav a:hover { color: var(--accent); }
+
+  /* ---------- hero ---------- */
+  .hero {
+    position: relative;
+    overflow: hidden;
+    padding: 88px 0 72px;
+    border-bottom: 1px solid var(--paper-line);
+  }
+  .hero .pattern {
+    position: absolute;
+    top: -10px;
+    right: 10px;
+    width: 420px;
+    height: 420px;
+    opacity: 0.7;
+    pointer-events: none;
+  }
+  .hero .wrap { position: relative; }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 14px;
+  }
+
+  h1.name {
+    font-family: var(--font-display);
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-size: clamp(2.4rem, 6vw, 3.4rem);
+    line-height: 1.05;
+    margin: 0 0 18px;
+    max-width: 11ch;
+  }
+
+  p.bio {
+    font-size: 1.05rem;
+    color: var(--ink-soft);
+    max-width: 46ch;
+    margin: 0 0 30px;
+  }
+  p.bio em { font-style: italic; color: var(--ink); }
+
+  .contact-block {
+    font-family: var(--font-mono);
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    border-left: 2px solid var(--paper-line);
+    padding-left: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    max-width: fit-content;
+  }
+  .contact-block .row span.k { color: var(--ink-faint); margin-right: 10px; display: inline-block; min-width: 66px; }
+  .contact-block a { color: var(--ink); }
+  .contact-block a:hover { color: var(--accent); }
+
+  /* ---------- section shell ---------- */
+  section.block { padding: 64px 0; border-bottom: 1px solid var(--paper-line); }
+  section.block:last-of-type { border-bottom: none; }
+
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 34px;
+    gap: 16px;
+  }
+  h2.section-title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.7rem;
+    margin: 0;
+  }
+  .section-note {
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    color: var(--ink-faint);
+    white-space: nowrap;
+  }
+
+  /* ---------- papers ---------- */
+  .papers-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0; }
+  .paper {
+    padding: 22px 0;
+    border-top: 1px solid var(--paper-line);
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    gap: 18px;
+  }
+  .paper:first-child { border-top: 1px solid var(--paper-line); }
+  .paper .idx {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--ink-faint);
+    padding-top: 4px;
+  }
+  .paper .title {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 1.12rem;
+    margin: 0 0 4px;
+    color: var(--ink);
+  }
+  .paper .meta {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--ink-faint);
+    margin-bottom: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .paper .meta .tag {
+    color: var(--accent-gold);
+  }
+  .paper details { margin-top: 6px; }
+  .paper summary {
+    cursor: pointer;
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    list-style: none;
+  }
+  .paper summary::-webkit-details-marker { display: none; }
+  .paper summary::before { content: "abstract  +"; }
+  .paper details[open] summary::before { content: "abstract  –"; }
+  .paper .abstract {
+    font-size: 15px;
+    color: var(--ink-soft);
+    margin: 10px 0 0;
+    max-width: 62ch;
+  }
+  .paper .pdf-link {
+    display: inline-block;
+    margin-top: 12px;
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    padding: 5px 10px;
+    text-decoration: none;
+  }
+  .paper .pdf-link:hover { background: var(--accent); color: var(--paper); }
+
+  /* empty state */
+  .empty-shelf {
+    border: 1px dashed var(--paper-line);
+    padding: 34px 26px;
+    text-align: left;
+    font-family: var(--font-mono);
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    line-height: 1.75;
+  }
+  .empty-shelf strong { color: var(--ink); font-family: var(--font-body); font-style: italic; font-size: 15px; display: block; margin-bottom: 10px; }
+  .empty-shelf code {
+    background: rgba(30,43,39,0.06);
+    padding: 1px 5px;
+    border-radius: 2px;
+  }
+
+  /* ---------- footer ---------- */
+  footer {
+    padding: 34px 0 60px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--ink-faint);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  footer a { color: var(--ink-faint); }
+  footer a:hover { color: var(--accent); }
+
+  @media (max-width: 560px) {
+    .paper { grid-template-columns: 28px 1fr; gap: 12px; }
+    .hero .pattern { width: 240px; height: 240px; right: 6px; opacity: 0.55; }
+    .site-header nav a { margin-left: 14px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="mark" href="#top">Arda Ergün</a>
+    <nav>
+      <a href="#papers">Papers</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <svg class="pattern" id="pascal-pattern" viewBox="0 0 420 420" aria-hidden="true"></svg>
+  <div class="wrap">
+    <p class="eyebrow">Combinatorics · Number Theory</p>
+    <h1 class="name">Arda ERGÜN</h1>
+    <p class="bio">I am a <em>17-year-old</em> mathematics researcher interested in combinatorics and number theory. This page collects my papers and preprints as they're written.</p>
+    <div class="contact-block">
+      <div class="row"><span class="k">email</span><a href="mailto:ergunarda1349@gmail.com">ergunarda1349@gmail.com</a></div>
+      <div class="row"><span class="k">github</span><a href="https://github.com/pipmrty" target="_blank" rel="noopener">github.com/pipmrty</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="papers">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 class="section-title">Papers &amp; Preprints</h2>
+      <span class="section-note" id="papers-count"></span>
+    </div>
+    <ul class="papers-list" id="papers-list"></ul>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; width:100%;">
+    <span>Release the light.</span>
+    <span><a href="mailto:ergunarda1349@gmail.com">ergunarda1349@gmail.com</a> · <a href="https://github.com/pipmrty" target="_blank" rel="noopener">GitHub</a></span>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   PAPERS DATA
+   Add a new preprint by pushing another object into this array.
+   Fields:
+     title    – string, required
+     date     – string, e.g. "2026" or "Jul 2026", required
+     tags     – array of short strings, e.g. ["combinatorics"]
+     abstract – string, required
+     pdf      – relative path to the PDF file, e.g. "papers/my-paper.pdf"
+                (create a folder named "papers" next to this index.html
+                 and drop the PDF file in there)
+   Example entry (copy this shape for a real one):
+
+   {
+     title: "On a Family of Restricted Partition Identities",
+     date: "2026",
+     tags: ["combinatorics", "partitions"],
+     abstract: "We study a class of partition identities restricted by ...",
+     pdf: "papers/partition-identities.pdf"
+   }
+   ============================================================ */
+const PAPERS = [
+  // Add your entries here, following the shape above.
+];
+
+function renderPapers() {
+  const list = document.getElementById('papers-list');
+  const count = document.getElementById('papers-count');
+
+  if (PAPERS.length === 0) {
+    count.textContent = '';
+    list.innerHTML = `
+      <li class="empty-shelf">
+        <strong>Nothing posted yet.</strong>
+        No papers or preprints are listed here. 
+      </li>`;
+    return;
+  }
+
+  count.textContent = PAPERS.length === 1 ? '1 entry' : PAPERS.length + ' entries';
+
+  list.innerHTML = PAPERS.map((p, i) => {
+    const num = String(i + 1).padStart(2, '0');
+    const tags = (p.tags || []).map(t => `<span class="tag">#${t}</span>`).join(' ');
+    return `
+      <li class="paper">
+        <div class="idx">${num}</div>
+        <div>
+          <p class="title">${p.title}</p>
+          <div class="meta"><span>${p.date}</span>${tags ? ' · ' + tags : ''}</div>
+          <details>
+            <summary></summary>
+            <p class="abstract">${p.abstract}</p>
+          </details>
+          ${p.pdf ? `<a class="pdf-link" href="${p.pdf}" target="_blank" rel="noopener">Download PDF</a>` : ''}
+        </div>
+      </li>`;
+  }).join('');
+}
+
+renderPapers();
+
+/* ------------------------------------------------------------
+   Signature background pattern: Pascal's triangle mod 2
+   (Sierpiński gasket), computed directly — not decorative
+   noise, an actual combinatorial object: C(n,k) mod 2, colored
+   by row depth from ink through accent into gold.
+   ------------------------------------------------------------ */
+(function drawPascal() {
+  const svg = document.getElementById('pascal-pattern');
+  const rows = 44;
+  const size = 420;
+  const cell = size / rows;
+  const rMax = cell * 0.46;
+  const rMin = cell * 0.22;
+
+  // ink -> accent -> gold, interpolated by row depth
+  const stops = [
+    [0x1E, 0x2B, 0x27],  // --ink
+    [0x8C, 0x3B, 0x2E],  // --accent
+    [0xB9, 0x8A, 0x2E],  // --accent-gold
+  ];
+  function colorAt(t) {
+    const seg = t < 0.5 ? 0 : 1;
+    const localT = t < 0.5 ? t / 0.5 : (t - 0.5) / 0.5;
+    const [r1, g1, b1] = stops[seg];
+    const [r2, g2, b2] = stops[seg + 1];
+    const r = Math.round(r1 + (r2 - r1) * localT);
+    const g = Math.round(g1 + (g2 - g1) * localT);
+    const b = Math.round(b1 + (b2 - b1) * localT);
+    return `rgb(${r},${g},${b})`;
+  }
+
+  let dots = '';
+  for (let n = 0; n < rows; n++) {
+    const depthT = n / (rows - 1);
+    const fill = colorAt(depthT);
+    // dots taper slightly as the triangle deepens, for a livelier silhouette
+    const r = rMax - (rMax - rMin) * depthT;
+    for (let k = 0; k <= n; k++) {
+      // Kummer/Lucas shortcut: C(n,k) is odd iff (n & k) === k
+      if ((n & k) === k) {
+        const x = size / 2 - (n * cell) / 2 + k * cell + cell / 2;
+        const y = n * cell + cell / 2;
+        dots += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${r.toFixed(1)}" fill="${fill}"/>`;
+      }
+    }
+  }
+  svg.innerHTML = dots;
+})();
+</script>
+
+</body>
+</html>
